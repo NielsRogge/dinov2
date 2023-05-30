@@ -250,9 +250,9 @@ class NestedTensorBlock(Block):
             x = x + ffn_residual_func(x)
             return attn_bias.split(x)
 
-    def forward(self, x_or_x_list):
+    def forward(self, x_or_x_list, print_values=False):
         if isinstance(x_or_x_list, Tensor):
-            return super().forward(x_or_x_list)
+            return super().forward(x_or_x_list, print_values=print_values)
         elif isinstance(x_or_x_list, list):
             assert XFORMERS_AVAILABLE, "Please install xFormers for nested tensors usage"
             return self.forward_nested(x_or_x_list)
