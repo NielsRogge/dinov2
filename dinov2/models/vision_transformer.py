@@ -229,9 +229,6 @@ class DinoVisionTransformer(nn.Module):
 
         x_norm = self.norm(x)
 
-        print("First values of x_norm:", x_norm[0, :3, 3])
-        print("X_norm_cls_token:", x_norm[:, 0])
-
         return {
             "x_norm_clstoken": x_norm[:, 0],
             "x_norm_patchtokens": x_norm[:, 1:],
