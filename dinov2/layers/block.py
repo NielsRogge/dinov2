@@ -81,15 +81,15 @@ class Block(nn.Module):
 
     def forward(self, x: Tensor, print_values=False) -> Tensor:
         def attn_residual_func(x: Tensor) -> Tensor:
+            if print_values:
+                print("Hidden states after first layernorm:", self.norm1(x)[0,:3,:3])
+
             z = self.attn(self.norm1(x))
 
             if print_values:
-                print("Hidden states before first layerscale:", z[0,:3,:3])
+                print("Hidden states after attention:", z[0,:3,:3])
 
             y = self.ls1(z)
-
-            if print_values:
-                print("Hidden states after first layerscale:", y[0,:3,:3])
 
             return y
 
