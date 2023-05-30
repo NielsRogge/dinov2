@@ -233,7 +233,7 @@ class DinoVisionTransformer(nn.Module):
             if i == 0:
                 print("Hidden states before first Transformer layer:", x[0,:3,:3])
 
-            x = blk(x)
+            x = blk(x, print_values=i==0)
 
             if i == 0:
                 print("Hidden states after first Transformer layer:", x[0,:3,:3])

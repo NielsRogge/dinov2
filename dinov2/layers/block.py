@@ -79,7 +79,7 @@ class Block(nn.Module):
 
         self.sample_drop_ratio = drop_path
 
-    def forward(self, x: Tensor) -> Tensor:
+    def forward(self, x: Tensor, print_values=False) -> Tensor:
         def attn_residual_func(x: Tensor) -> Tensor:
             return self.ls1(self.attn(self.norm1(x)))
 
@@ -103,7 +103,15 @@ class Block(nn.Module):
             x = x + self.drop_path1(ffn_residual_func(x))  # FIXME: drop_path2
         else:
             x = x + attn_residual_func(x)
+
+            if print_values:
+                print("First values of hidden states after first residual:", x[0,:3,:3])
+
             x = x + ffn_residual_func(x)
+
+            if print_values:
+                print("First values of hidden states after second residual:", x[0,:3,:3])
+
         return x
 
 
