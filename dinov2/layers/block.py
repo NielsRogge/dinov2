@@ -81,8 +81,14 @@ class Block(nn.Module):
 
     def forward(self, x: Tensor, print_values=False) -> Tensor:
         def attn_residual_func(x: Tensor) -> Tensor:
+            
+            if print_values:
+                print("Hidden states before first layernorm:", x[0,:3,:3])
+                print("Mean of hidden states before first layernorm:", x.mean())
+
             if print_values:
                 print("Hidden states after first layernorm:", self.norm1(x)[0,:3,:3])
+                print("Mean of hidden states after first layernorm:", self.norm1(x).mean())
 
             z = self.attn(self.norm1(x))
 
