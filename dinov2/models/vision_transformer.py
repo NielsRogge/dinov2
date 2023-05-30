@@ -229,8 +229,14 @@ class DinoVisionTransformer(nn.Module):
         print("Shape of patch embeddings:", x.shape)
         print("First values of patch embeddings:", x[0,:3,:3])
 
-        for blk in self.blocks:
+        for i, blk in enumerate(self.blocks):
+            if i == 0:
+                print("Hidden states before first Transformer layer:", x[0,:3,:3])
+
             x = blk(x)
+
+            if i == 0:
+                print("Hidden states after first Transformer layer:", x[0,:3,:3])
 
         x_norm = self.norm(x)
 
