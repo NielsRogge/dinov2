@@ -226,6 +226,9 @@ class DinoVisionTransformer(nn.Module):
 
         x = self.prepare_tokens_with_masks(x, masks)
 
+        print("Shape of patch embeddings:", x.shape)
+        print("First values of patch embeddings:", x[0,:3,:3])
+
         for blk in self.blocks:
             x = blk(x)
 
