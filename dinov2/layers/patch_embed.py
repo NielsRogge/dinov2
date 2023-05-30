@@ -53,9 +53,6 @@ class PatchEmbed(nn.Module):
             image_HW[1] // patch_HW[1],
         )
 
-        print("Image size:", img_size)
-        print("Patch size:", patch_size)
-
         self.img_size = image_HW
         self.patch_size = patch_HW
         self.patches_resolution = patch_grid_size
@@ -70,6 +67,9 @@ class PatchEmbed(nn.Module):
         self.norm = norm_layer(embed_dim) if norm_layer else nn.Identity()
 
     def forward(self, x: Tensor) -> Tensor:
+
+        print("Shape of pixel values before patch embedding:", x.shape)
+
         _, _, H, W = x.shape
         patch_H, patch_W = self.patch_size
 
@@ -77,6 +77,9 @@ class PatchEmbed(nn.Module):
         assert W % patch_W == 0, f"Input image width {W} is not a multiple of patch width: {patch_W}"
 
         x = self.proj(x)  # B C H W
+
+        print("Shape of x after patch embeddings:", x.shape)
+
         H, W = x.size(2), x.size(3)
         x = x.flatten(2).transpose(1, 2)  # B HW C
         x = self.norm(x)
