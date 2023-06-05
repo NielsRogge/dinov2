@@ -31,7 +31,7 @@ image = Image.open(requests.get(url, stream=True).raw)
 
 # preprocess image
 transformations = transforms.Compose([
-    transforms.Resize(256),
+    transforms.Resize(256, interpolation=transforms.InterpolationMode.BICUBIC),
     transforms.CenterCrop(224),
     transforms.ToTensor(),
     transforms.Normalize(
