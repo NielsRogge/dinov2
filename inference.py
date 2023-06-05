@@ -15,7 +15,7 @@ def load_model(size="base"):
                                                         map_location="cpu")
     elif size == "giant":
         model = vit_giant2(img_size=518, patch_size=14, init_values=1.0, ffn_layer = "swiglufused", block_chunks = 0)
-        state_dict = torch.hub.load_state_dict_from_url("https://dl.fbaipublicfiles.com/dinov2/dinov2_vitb14/dinov2_vitg14_pretrain.pth",
+        state_dict = torch.hub.load_state_dict_from_url("https://dl.fbaipublicfiles.com/dinov2/dinov2_vitg14/dinov2_vitg14_pretrain.pth",
                                                         map_location="cpu")
 
     # equip the model with weights
