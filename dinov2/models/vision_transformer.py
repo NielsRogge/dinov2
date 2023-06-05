@@ -223,6 +223,9 @@ class DinoVisionTransformer(nn.Module):
     def forward_features(self, x, masks=None):
         if isinstance(x, list):
             return self.forward_features_list(x, masks)
+        
+        print("First values of pixel values:", x[0,0,:3,:3])
+        print("Mean of pixel values:", x.mean())
 
         x = self.prepare_tokens_with_masks(x, masks)
 
