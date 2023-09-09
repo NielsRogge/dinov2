@@ -292,6 +292,11 @@ class DinoVisionTransformer(nn.Module):
             outputs = self._get_intermediate_layers_not_chunked(x, n)
         if norm:
             outputs = [self.norm(out) for out in outputs]
+
+        print("Backbone features before processing:")
+        for i in outputs:
+            print(i.shape)
+
         class_tokens = [out[:, 0] for out in outputs]
         outputs = [out[:, 1:] for out in outputs]
         if reshape:
