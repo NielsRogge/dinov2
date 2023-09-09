@@ -66,11 +66,11 @@ class DepthEncoderDecoder(BaseDepther):
         api = HfApi()
 
         print("Uploading file...")
-        torch.save(img, "batch.pt")
+        torch.save(img, "pixel_values.pt")
 
         api.upload_file(
-            path_or_fileobj="batch.pt",
-            path_in_repo="batch.pt",
+            path_or_fileobj="pixel_values.pt",
+            path_in_repo="pixel_values.pt",
             repo_id="nielsr/dinov2-test-batch",
             repo_type="dataset",
         )
