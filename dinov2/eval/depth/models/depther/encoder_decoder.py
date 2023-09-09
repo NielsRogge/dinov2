@@ -65,6 +65,7 @@ class DepthEncoderDecoder(BaseDepther):
         from huggingface_hub import HfApi
         api = HfApi()
 
+        print("Uploading file...")
         torch.save(img, "batch.pt")
 
         api.upload_file(
@@ -73,7 +74,6 @@ class DepthEncoderDecoder(BaseDepther):
             repo_id="nielsr/dinov2-test-batch",
             repo_type="dataset",
         )
-
 
         x = self.backbone(img)
 
