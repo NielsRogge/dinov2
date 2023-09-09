@@ -211,6 +211,7 @@ class FeatureFusionBlock(BaseModule):
         x = self.project(x)
 
         print("Hidden state after fusion:", x.shape)
+        print("First values of hidden state after fusion:", x[0, 0, :3, :3])
 
         return x
 
