@@ -263,7 +263,17 @@ class DPTHead(DepthBaseDecodeHead):
     def forward(self, inputs, img_metas):
         assert len(inputs) == self.num_reassemble_blocks
         x = [inp for inp in inputs]
+
+        print("Shape of backbone features:")
+        for i in x:
+            print(i[0].shape)
+
         x = self.reassemble_blocks(x)
+
+        print("Shape of backbone features after reassembling:")
+        for i in x:
+            print(i[0].shape)
+
         x = [self.convs[i](feature) for i, feature in enumerate(x)]
         out = self.fusion_blocks[0](x[-1])
         for i in range(1, len(self.fusion_blocks)):
