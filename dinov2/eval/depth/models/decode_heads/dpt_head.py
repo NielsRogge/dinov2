@@ -263,6 +263,7 @@ class DPTHead(DepthBaseDecodeHead):
             self.fusion_blocks.append(FeatureFusionBlock(self.channels, self.act_cfg, self.norm_cfg))
         self.fusion_blocks[0].res_conv_unit1 = None
         self.project = ConvModule(self.channels, self.channels, kernel_size=3, padding=1, norm_cfg=self.norm_cfg)
+        print("Final projection:", self.project)
         self.num_fusion_blocks = len(self.fusion_blocks)
         self.num_reassemble_blocks = len(self.reassemble_blocks.resize_layers)
         self.num_post_process_channels = len(self.post_process_channels)
