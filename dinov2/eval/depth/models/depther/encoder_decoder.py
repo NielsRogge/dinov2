@@ -65,7 +65,7 @@ class DepthEncoderDecoder(BaseDepther):
 
         print("Backbone features:")
         print('Number of backbone features:', len(x))
-       for i in x:
+        for i in x:
             print(i[0].shape)
 
         if self.with_neck:
