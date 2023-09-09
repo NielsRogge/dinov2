@@ -205,6 +205,8 @@ class FeatureFusionBlock(BaseModule):
                 res = resize(inputs[1], size=(x.shape[2], x.shape[3]), mode="bilinear", align_corners=False)
             else:
                 res = inputs[1]
+            print("Shape of residual:", res.shape)
+            print("First values of residual:", res[0, 0, :3, :3])
             x = x + self.res_conv_unit1(res)
 
         print("Hidden state before residual layer 2:", x[0,0,:3,:3])
