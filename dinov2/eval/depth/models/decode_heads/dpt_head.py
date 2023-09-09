@@ -285,6 +285,11 @@ class DPTHead(DepthBaseDecodeHead):
         out = self.fusion_blocks[0](x[-1])
         for i in range(1, len(self.fusion_blocks)):
             out = self.fusion_blocks[i](out, x[-(i + 1)])
+
+        print("Fused features:")
+        for i in out:
+            print(i.shape)
+
         out = self.project(out)
         out = self.depth_pred(out)
         return out
