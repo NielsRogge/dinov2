@@ -276,7 +276,7 @@ class DPTHead(DepthBaseDecodeHead):
 
         print("Backbone features:")
         for i in x:
-            print(i.shape)
+            print(i[0].shape)
             print(i[0][0,0,:3,:3])
 
         x = self.reassemble_blocks(x)
