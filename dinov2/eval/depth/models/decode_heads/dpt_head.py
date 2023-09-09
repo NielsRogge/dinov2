@@ -209,6 +209,9 @@ class FeatureFusionBlock(BaseModule):
         x = self.res_conv_unit2(x)
         x = resize(x, scale_factor=2, mode="bilinear", align_corners=self.align_corners)
         x = self.project(x)
+
+        print("Hidden state after fusion:", x.shape)
+
         return x
 
 
