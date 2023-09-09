@@ -309,6 +309,6 @@ class DPTHead(DepthBaseDecodeHead):
         out = self.depth_pred(out)
 
         print("Final depth:", out.shape)
-        print("First values of final depth:", out[0,:3,:3])
+        print("First values of final depth:", out[0,0,:3,:3])
 
         return out
