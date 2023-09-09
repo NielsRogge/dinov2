@@ -273,6 +273,7 @@ class DPTHead(DepthBaseDecodeHead):
         print("Shape of backbone features after reassembling:")
         for i in x:
             print(i.shape)
+            print("First values:", i[0,0,:3,:3])
 
         x = [self.convs[i](feature) for i, feature in enumerate(x)]
         out = self.fusion_blocks[0](x[-1])
