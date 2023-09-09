@@ -202,6 +202,7 @@ class FeatureFusionBlock(BaseModule):
         x = inputs[0]
         if len(inputs) == 2:
             if x.shape != inputs[1].shape:
+                print("Hidden_state before interpolation:", inputs[1][0,0,:3,:3])
                 res = resize(inputs[1], size=(x.shape[2], x.shape[3]), mode="bilinear", align_corners=False)
             else:
                 res = inputs[1]
