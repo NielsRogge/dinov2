@@ -276,6 +276,12 @@ class DPTHead(DepthBaseDecodeHead):
             print("First values:", i[0,0,:3,:3])
 
         x = [self.convs[i](feature) for i, feature in enumerate(x)]
+
+        print("Backbone features after convs:")
+        for i in x:
+            print(i.shape)
+            print("First values:", i[0,0,:3,:3])
+
         out = self.fusion_blocks[0](x[-1])
         for i in range(1, len(self.fusion_blocks)):
             out = self.fusion_blocks[i](out, x[-(i + 1)])
