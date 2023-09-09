@@ -291,6 +291,7 @@ class DPTHead(DepthBaseDecodeHead):
 
         out = self.fusion_blocks[0](x[-1])
         for i in range(1, len(self.fusion_blocks)):
+            print("-----------FUSION LAYER-----------", i)
             out = self.fusion_blocks[i](out, x[-(i + 1)])
 
         print("Fused features:")
