@@ -101,9 +101,12 @@ class ReassembleBlocks(BaseModule):
     def forward(self, inputs):
         assert isinstance(inputs, list)
         out = []
+        print("Inside DPT neck")
         for i, x in enumerate(inputs):
             assert len(x) == 2
             x, cls_token = x[0], x[1]
+            print("Shape of patch features:", x.shape)
+            print("Shape of cls token:", cls_token.shape)
             feature_shape = x.shape
             if self.readout_type == "project":
                 x = x.flatten(2).permute((0, 2, 1))

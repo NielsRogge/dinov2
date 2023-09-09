@@ -65,7 +65,6 @@ class DepthEncoderDecoder(BaseDepther):
         x = self.backbone(img)
 
         print("Backbone features:")
-        print('Number of backbone features:', len(x))
         for i in x:
             print(i[0].shape)
 
