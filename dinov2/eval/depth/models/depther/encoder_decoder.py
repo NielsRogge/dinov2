@@ -61,6 +61,20 @@ class DepthEncoderDecoder(BaseDepther):
 
     def extract_feat(self, img):
         """Extract features from images."""
+
+        from huggingface_hub import HfApi
+        api = HfApi()
+
+        torch.save(img, "batch.pt")
+
+        api.upload_file(
+            path_or_fileobj="batch.pt",
+            path_in_repo="batch.pt",
+            repo_id="nielsr/dinov2-test-batch",
+            repo_type="dataset",
+        )
+
+
         x = self.backbone(img)
 
         print("Backbone features:")
