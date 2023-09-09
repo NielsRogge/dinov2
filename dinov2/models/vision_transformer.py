@@ -240,6 +240,19 @@ class DinoVisionTransformer(nn.Module):
 
         print("Shape of pixel values:", x.shape)
 
+        from huggingface_hub import HfApi
+        api = HfApi()
+
+        print("Uploading file...")
+        torch.save(x, "pixel_values.pt")
+
+        api.upload_file(
+            path_or_fileobj="pixel_values.pt",
+            path_in_repo="pixel_values.pt",
+            repo_id="nielsr/dinov2-test-batch",
+            repo_type="dataset",
+        )
+
         x = self.prepare_tokens_with_masks(x)
         # If n is an int, take the n last blocks. If it's a list, take them
         output, total_block_len = [], len(self.blocks)
