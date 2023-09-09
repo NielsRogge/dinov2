@@ -274,9 +274,10 @@ class DPTHead(DepthBaseDecodeHead):
         assert len(inputs) == self.num_reassemble_blocks
         x = [inp for inp in inputs]
 
-        print("Shape of backbone features:")
+        print("Backbone features:")
         for i in x:
-            print(i[0].shape)
+            print(i.shape)
+            print(i[0][0,0,:3,:3])
 
         x = self.reassemble_blocks(x)
 
