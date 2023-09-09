@@ -221,6 +221,8 @@ class DinoVisionTransformer(nn.Module):
         if isinstance(x, list):
             return self.forward_features_list(x, masks)
 
+        print("Shape of pixel values:", x.shape)
+
         x = self.prepare_tokens_with_masks(x, masks)
 
         for blk in self.blocks:
