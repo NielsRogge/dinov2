@@ -206,6 +206,9 @@ class FeatureFusionBlock(BaseModule):
             else:
                 res = inputs[1]
             x = x + self.res_conv_unit1(res)
+
+        print("Hidden state before residual layer 2:", x[0,0,:3,:3])
+
         x = self.res_conv_unit2(x)
         x = resize(x, scale_factor=2, mode="bilinear", align_corners=self.align_corners)
         x = self.project(x)
