@@ -290,6 +290,8 @@ class DPTHead(DepthBaseDecodeHead):
         for i in out:
             print(i.shape)
 
+        print("First values of fused features:", out[0,0,:3,:3])
+
         out = self.project(out)
         out = self.depth_pred(out)
         return out
