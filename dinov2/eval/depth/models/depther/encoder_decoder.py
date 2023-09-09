@@ -63,7 +63,9 @@ class DepthEncoderDecoder(BaseDepther):
         """Extract features from images."""
         x = self.backbone(img)
 
-        print("Backbone features:", x)
+        print("Backbone features:")
+        for i in x:
+            print(i.shape)
 
         if self.with_neck:
             x = self.neck(x)
