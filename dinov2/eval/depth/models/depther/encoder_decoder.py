@@ -78,6 +78,7 @@ class DepthEncoderDecoder(BaseDepther):
         x = self.extract_feat(img)
         out = self._decode_head_forward_test(x, img_metas)
         # crop the pred depth to the certain range.
+        print("Shape before clamping:", out.shape)
         out = torch.clamp(out, min=self.decode_head.min_depth, max=self.decode_head.max_depth)
         if rescale:
             if size is None:
@@ -85,6 +86,8 @@ class DepthEncoderDecoder(BaseDepther):
                     size = img_metas[0]["ori_shape"][:2]
                 else:
                     size = img.shape[2:]
+            print("Shape before resizing:", out.shape)
+            print("Size:", size)
             out = resize(input=out, size=size, mode="bilinear", align_corners=self.align_corners)
         return out
 
